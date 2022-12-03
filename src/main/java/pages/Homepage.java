@@ -35,12 +35,21 @@ public class Homepage {
    }
    //Go to register
    public static By loginIcon = By.xpath("//button[@data-testid='myAccountIcon']");
+
    public void clickOnJoin(){
     driver.findElement(loginIcon).click();
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); //since the element is initially hidden, we need to put a wait 
 	WebElement element = wait.until(
-	ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-testid='signin-link']")));
+	ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-testid='signup-link']")));
 	    driver.findElement(By.xpath("//a[@data-testid='signup-link']")).click();
+   }
+
+   public void clickOnLogin(){
+    driver.findElement(loginIcon).click();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); //since the element is initially hidden, we need to put a wait 
+	WebElement element = wait.until(
+	ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-testid='signin-link']")));
+	    driver.findElement(By.xpath("//a[@data-testid='signin-link']")).click();
    }
 
    //search bar
@@ -72,6 +81,7 @@ public class Homepage {
         //click on 'Add to cart'
         driver.findElement(By.id("product-add-button")).click();
    }
+
    
    }
     

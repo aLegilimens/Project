@@ -19,17 +19,21 @@ public class VerifyRegistrationWithValidInputs {
         driver = new ChromeDriver();
         home = new Homepage(driver);
         reg = new Registrationpage(this.driver);
-        home.clickOnJoin();
-        
     }
     
     
     //this test should assertTrue only the first time since we can only register once with the same data. 
     @Test
     public void register(){
+       home.clickOnJoin();
        reg.inputRegistrationInfo("doe513960@gmail.com", "John", "Doe", "Pass12345?", "4", "March", "2001", "female");
        //Assert.assertTrue((driver.getCurrentUrl().contains("https://www.asos.com/")), "Test failed. Registration not successful.");
        //Assert.assertTrue((driver.getTitle().contains("denied")), (driver.getTitle()));
+    }
+    @Test
+    public void login(){
+        home.clickOnLogin();
+        reg.inputLogin("doe513960@gmail.com", "Pass12345?");
     }
     
     @AfterClass

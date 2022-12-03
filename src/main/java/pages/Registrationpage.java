@@ -14,6 +14,9 @@ public class Registrationpage {
     }
 
    //elements 
+   public static By emailLogin = By.id("EmailAddress");
+   public static By passLogin = By.id("Password");
+
    public static By email = By.id("Email");
    public static By firstName = By.id("FirstName");
    public static By lastName = By.id("LastName");
@@ -33,6 +36,11 @@ public class Registrationpage {
     driver.findElement(dateOfBirthMonth).sendKeys(bMonth);
     driver.findElement(dateOfBirthYear).sendKeys(bYear);
     driver.findElement(registerBtn).click();
+   }
+   public void inputLogin(String em, String pas){
+    driver.findElement(emailLogin).sendKeys(em);
+    driver.findElement(passLogin).sendKeys(pas);
+    driver.findElement(By.id("signin")).click();
    }
 
 }
