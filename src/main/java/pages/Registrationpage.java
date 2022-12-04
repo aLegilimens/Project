@@ -37,9 +37,14 @@ public class Registrationpage {
     driver.findElement(dateOfBirthYear).sendKeys(bYear);
     driver.findElement(registerBtn).click();
    }
-   public void inputLogin(String em, String pas){
+
+   
+   public void inputLogin(String em, String pas) throws InterruptedException{
+    Thread.sleep(2000);
     driver.findElement(emailLogin).sendKeys(em);
+    Thread.sleep(2000);
     driver.findElement(passLogin).sendKeys(pas);
+    Thread.sleep(2000);
     driver.findElement(By.id("signin")).click();
    }
 

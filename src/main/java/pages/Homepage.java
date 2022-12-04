@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -28,11 +29,6 @@ public class Homepage {
     PageFactory.initElements(driver, this);
     }
 
-   //Instagram icon
-   public static By igIcon = By.xpath("//a[@href='https://www.instagram.com/asos/']");
-   public void clickOnSocialMedia(){
-    driver.findElement(igIcon).click();
-   }
    //Go to register
    public static By loginIcon = By.xpath("//button[@data-testid='myAccountIcon']");
 
@@ -44,6 +40,7 @@ public class Homepage {
 	    driver.findElement(By.xpath("//a[@data-testid='signup-link']")).click();
    }
 
+   //Go to Login page 
    public void clickOnLogin(){
     driver.findElement(loginIcon).click();
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); //since the element is initially hidden, we need to put a wait 
@@ -52,7 +49,7 @@ public class Homepage {
 	    driver.findElement(By.xpath("//a[@data-testid='signin-link']")).click();
    }
 
-   //search bar
+   //Search bar
    public static By search = By.xpath("//input[@data-testid='search-input']");
    public void enterInput(String input){
     driver.findElement(search).sendKeys(input+Keys.ENTER);
@@ -82,6 +79,33 @@ public class Homepage {
         driver.findElement(By.id("product-add-button")).click();
    }
 
+   //Sales ad
+   public static By sales = By.xpath("//a[@href='/men/ctas/coded-promos/promo-1/cat/?cid=50055&ctaref=globalbanner|mw|20offeverything']");
+   public void chooseProductSales(String s) throws InterruptedException{
+    Thread.sleep(2000);    
+    driver.findElement(sales).click(); //click on 'Sales Ad'
+        
+        //choose a product and click
+        List<WebElement> results = driver.findElements(By.xpath("//div[@data-auto-id='productTileDescription']"));
+        results.get(1).click();
+
+        Thread.sleep(2000);
+        //Select size
+        By size = By.xpath("//select[@id='main-size-select-0']");
+        Select selSize = new Select (driver.findElement(size));
+        selSize.selectByIndex(2);
+
+        //wait
+        Thread.sleep(2000);
+        //click on 'Add to cart'
+        driver.findElement(By.id("product-add-button")).click();
+   }
    
+   //Instagram icon
+   public static By igIcon = By.xpath("//a[@href='https://www.instagram.com/asos/']");
+   public void clickOnSocialMedia(){
+    driver.findElement(igIcon).click();
+   }
+
    }
     

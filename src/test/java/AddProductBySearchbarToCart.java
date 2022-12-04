@@ -26,9 +26,8 @@ public class AddProductBySearchbarToCart {
     public void testSearchBar(){
         String input = "t-shirt";
         home.enterInput(input);
-        // Now, let's gather our search results
+        // search results
         List<WebElement> results = driver.findElements(By.xpath("//div[@data-auto-id='productTileDescription']"));
-        //results.get(1).click();
         // Finally, we'll loop over the list to verify each result link contains our term
         for (int i = 0; i < results.size(); i++) {
            Assert.assertTrue((results.get(i).getText().contains(input) || results.get(i).getText().contains("tee")), ("Search result validation failed at instance" + i));
