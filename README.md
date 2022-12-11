@@ -1,17 +1,15 @@
-## Getting Started
+## Test Automation - Selenium
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This project is an example of web test automation using Page Object Modeling (POM).
+The website we used: https://www.asos.com/
 
 ## Folder Structure
 
-The workspace contains two folders by default, where:
+The workspace contains two folders, where:
 
-- `src`: the folder to maintain sources
+- `src`: the folder to maintain sources, pages and tests
 - `lib`: the folder to maintain dependencies
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
 ## Dependency Management
 
