@@ -1,5 +1,6 @@
 package test.java;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -23,12 +24,20 @@ public class AddProductByMenCategoryToCart {
     }
 
     @Test
-    public void testMenCategory(){
+    public void testMenCategory() throws InterruptedException{
         String category = "Shoes";
+        Thread.sleep(1000);
         String subcategory = "Sandals";
+        Thread.sleep(1000);
         String size = "EU 40";
         home.chooseSubcategory(category, subcategory, size);
-        Assert.assertTrue((driver.getPageSource().contains("Sorry")));
+        //After putting the product in the bag, check if an error message shows up
+        //If yes, the action did not succeed. 
+        Thread.sleep(1000);
+        Assert.assertFalse((driver.getPageSource().contains("Sorry")));
+        /*
+         * Since the product will not get added to the cart (driver problem), the test will not pass. 
+         */
    }  
     
     

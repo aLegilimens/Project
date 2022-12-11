@@ -13,7 +13,7 @@ import org.testng.Assert;
 
 import main.java.pages.*;
 
-public class AddProductBySearchbarToCart {
+public class SeeProductsBySearchbar {
     static WebDriver driver = new ChromeDriver();
 
     Homepage home;
@@ -30,7 +30,7 @@ public class AddProductBySearchbarToCart {
         List<WebElement> results = driver.findElements(By.xpath("//div[@data-auto-id='productTileDescription']"));
         // Finally, we'll loop over the list to verify each result link contains our term
         for (int i = 0; i < results.size(); i++) {
-           Assert.assertTrue((results.get(i).getText().contains(input) || results.get(i).getText().contains("tee")), ("Search result validation failed at instance" + i));
+           Assert.assertTrue((results.get(i).getText().contains(input) || results.get(i).getText().contains("tee") || results.get(i).getText().contains("T-shirt")), ("Search result validation failed at instance" + i));
        }
     }
     

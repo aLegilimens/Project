@@ -13,7 +13,6 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-
 public class Homepage {
 
     private WebDriver driver;
@@ -90,10 +89,16 @@ public class Homepage {
         results.get(1).click();
 
         Thread.sleep(2000);
-        //Select size
-        By size = By.xpath("//select[@id='main-size-select-0']");
-        Select selSize = new Select (driver.findElement(size));
-        selSize.selectByIndex(2);
+        //Select size - keep in mind that some of the products will not have a size selector we need to check for that
+        By size;
+
+        try {
+            size = By.xpath("//select[@id='main-size-select-0']");
+            Select selSize = new Select (driver.findElement(size));
+            selSize.selectByIndex(2);
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            
+        }
 
         //wait
         Thread.sleep(2000);
