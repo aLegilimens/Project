@@ -36,8 +36,8 @@ public class AddProductByMenCategoryToCart {
         Thread.sleep(1000);
         Assert.assertFalse((driver.getPageSource().contains("Sorry")));
         /*
-         * Since the product will not get added to the cart (driver problem), the test will not pass. 
-         */
+          Since the product will not get added to the cart (driver problem), the test will not pass. 
+        */
    }  
     
     

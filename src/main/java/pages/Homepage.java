@@ -79,7 +79,7 @@ public class Homepage {
    }
 
    //Sales ad
-   public static By sales = By.xpath("//a[@href='/men/ctas/coded-promos/promo-1/cat/?cid=50055&ctaref=globalbanner|mw|20offeverything']");
+   public static By sales = By.xpath("//a[@href='/men/ctas/generic-promos/promotion-7/cat/?cid=28239&ctaref=hp|mw|promo|banner|1|edit|generic']");
    public void chooseProductSales(String s) throws InterruptedException{
     Thread.sleep(2000);    
     driver.findElement(sales).click(); //click on 'Sales Ad'
@@ -106,11 +106,111 @@ public class Homepage {
         driver.findElement(By.id("product-add-button")).click();
    }
    
-   //Instagram icon
+   //Social media accounts 
    public static By igIcon = By.xpath("//a[@href='https://www.instagram.com/asos/']");
    public void clickOnSocialMedia(){
     driver.findElement(igIcon).click();
    }
 
+   
+   
+   //Add a product to Saved Items list
+   public void saved(){
+    driver.findElement(menCat).click(); //click on 'Men'
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); 
+        WebElement element = wait.until(
+        ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-id='87a52035-f6fa-401f-bd58-0d259e403cbb']")));
+        driver.findElement(By.xpath("//button[@data-id='c51a4a82-3055-436d-8a41-6621fd7439aa']")).click();
+        WebElement element1 = wait.until(
+        ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='https://www.asos.com/men/sportswear/tops/cat/?cid=27181#nlid=mw|sportswear|shop+by+product|tops']")));
+        driver.findElement(By.xpath("//a[@href='https://www.asos.com/men/sportswear/tops/cat/?cid=27181#nlid=mw|sportswear|shop+by+product|tops']")).click();
+
+        //get the 'Save' button
+        List<WebElement> saveButtons = driver.findElements(By.className("mm1gcXw"));
+        saveButtons.get(1).click();
+        
    }
-    
+
+
+   //Filter
+   public void filterResults() throws InterruptedException{   
+    driver.findElement(menCat).click();
+    Thread.sleep(3000);
+    driver.findElement(sales).click(); 
+
+    List<WebElement> filters = driver.findElements(By.className("eZ0Gy6f"));
+    filters.get(4).click();
+
+    List<WebElement> types = driver.findElements(By.className("hLBn89t"));
+    types.get(0).click();
+
+    Thread.sleep(3000);
+   }
+
+   //Forgot password 
+   public static By forgot = By.id("forgot-password-link");
+   public static By emailForgot = By.id("Email");
+   public static By send = By.id("send");
+   
+   public void forgotPass(String email){
+    clickOnLogin();
+    driver.findElement(forgot).click();
+    driver.findElement(emailForgot).sendKeys(email);
+    driver.findElement(send).click();
+   }
+
+   //Login with invalid data function
+   public static By emailLogin = By.id("EmailAddress");
+   public static By signin = By.id("signin");
+   public void invalidLogin(String email){
+    clickOnLogin();
+    driver.findElement(emailLogin).sendKeys(email);
+    driver.findElement(signin).click();
+   }
+
+
+   //Add to cart from saved items
+   public static By savedList = By.xpath("//a[@data-testid='savedItemsIcon']");
+   public void addFromSaved() throws InterruptedException{
+    //add an item to Saved list
+    saved();
+    //go to Saved list
+    driver.findElement(savedList).click();
+
+    //Select a size and add to the bag
+    Thread.sleep(2000);
+    WebElement sizes = driver.findElement(By.cssSelector("[aria-label=Size]"));
+    Select selectSize = new Select(sizes);
+    selectSize.selectByIndex(1);
+
+    Thread.sleep(2000);
+
+    driver.findElement(By.className("toBagButton_LHRGf")).click();
+   }
+
+   //Remove item from the cart
+   public static By cart = By.xpath("//button[@data-testid='miniBagIcon']");
+   public void removeFromCart() throws InterruptedException{
+    //firstly add an item to the cart
+    addFromSaved();
+    Thread.sleep(3000);
+    //go to the cart
+    driver.findElement(cart).click();
+    //click on the 'Delete' icon 
+    By delete = By.xpath("//button[@class='_2y4LZqx']");
+    driver.findElement(delete).click();
+   }
+
+   //Update size from the cart
+   public void updateSize() throws InterruptedException{
+    //firstly add an item to the cart
+    addFromSaved();
+    Thread.sleep(3000);
+    //go to the cart
+    driver.get("https://www.asos.com/bag?nlid=nav%20header");
+    Thread.sleep(3000);
+    driver.findElement(By.id("select2-kb1p-container")).click(); 
+   }
+
+   }
+   
