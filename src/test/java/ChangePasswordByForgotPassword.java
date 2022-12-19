@@ -29,7 +29,7 @@ public class ChangePasswordByForgotPassword {
         String email = "doe513960@gmail.com";
         home.forgotPass(email);
         Thread.sleep(2000);
-        //check if reset link is sent
+        /* check if reset link is sent */
         Assert.assertTrue(driver.getPageSource().contains("We've sent you an email to reset your password"));
         
     }

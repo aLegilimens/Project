@@ -24,7 +24,7 @@ public class AddToSavedItems {
     @Test
     public void addToSaved(){
         home.saved();
-        //check if added to 'Saved items' list
+        /* check if added to 'Saved items' list */
         driver.findElement(By.xpath("//a[@data-testid='savedItemsIcon']")).click();
         Assert.assertFalse(driver.getPageSource().contains("You have no Saved Items"));
     }

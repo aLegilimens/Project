@@ -31,7 +31,7 @@ public class AddToCartFromSavedItemsList {
     public void addSavedItems() throws InterruptedException{
         home.addFromSaved();
         Thread.sleep(3000);
-        //check if the item is added to the bag / if the item is added, the saved items list will be empty
+        /* check if the item is added to the bag / if the item is added, the saved items list will be empty */
         Assert.assertTrue(driver.getPageSource().contains("You have no Saved Items"));
     }
     

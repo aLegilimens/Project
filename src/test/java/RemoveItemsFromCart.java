@@ -32,7 +32,7 @@ public class RemoveItemsFromCart {
     public void removeItems() throws InterruptedException{
         home.removeFromCart();
         Thread.sleep(3000);
-        //check if the item is removed from the bag / if the item is removed, the cart will be empty
+        /* check if the item is removed from the bag / if the item is removed, the cart will be empty */
         driver.findElement(By.xpath("//a[@data-testid='miniBagIcon']")).click();
         Assert.assertTrue(driver.getPageSource().contains("Your bag is empty"));
     }

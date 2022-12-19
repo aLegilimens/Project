@@ -24,7 +24,7 @@ public class VerifyRegistrationWithValidInputs {
     }
     
     
-    //this test should assertTrue only the first time since we can only register once with the same data. 
+    /* this test should assertTrue only the first time since we can only register once with the same data. */
     @Test
     public void register(){
        home.clickOnJoin();

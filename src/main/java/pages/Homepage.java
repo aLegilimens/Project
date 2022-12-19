@@ -6,10 +6,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
@@ -17,10 +15,10 @@ public class Homepage {
 
     private WebDriver driver;
 
-    //Page URL
+    /* Page URL */
     private static String PAGE_URL="https://www.asos.com";
 
-   //Constructor
+   /* Constructor */
     public Homepage(WebDriver driver){
     this.driver=driver;
     driver.get(PAGE_URL);
@@ -28,9 +26,22 @@ public class Homepage {
     PageFactory.initElements(driver, this);
     }
 
-   //Go to register
+   /* ELEMENTS */
    public static By loginIcon = By.xpath("//button[@data-testid='myAccountIcon']");
+   public static By search = By.xpath("//input[@data-testid='search-input']");
+   public static By menCat = By.id("men-floor");
+   public static By sales = By.xpath("//a[@href='/men/ctas/generic-promos/promotion-7/cat/?cid=28239&ctaref=hp|mw|promo|banner|1|edit|generic']");
+   public static By igIcon = By.xpath("//a[@href='https://www.instagram.com/asos/']");
+   public static By forgot = By.id("forgot-password-link");
+   public static By emailForgot = By.id("Email");
+   public static By send = By.id("send");
+   public static By emailLogin = By.id("EmailAddress");
+   public static By signin = By.id("signin");
+   public static By savedList = By.xpath("//a[@data-testid='savedItemsIcon']");
+   public static By cart = By.xpath("//button[@data-testid='miniBagIcon']");
 
+
+   /* Go to 'Join' page */
    public void clickOnJoin(){
     driver.findElement(loginIcon).click();
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); //since the element is initially hidden, we need to put a wait 
@@ -39,7 +50,7 @@ public class Homepage {
 	    driver.findElement(By.xpath("//a[@data-testid='signup-link']")).click();
    }
 
-   //Go to Login page 
+   /* Go to 'Login' page */
    public void clickOnLogin(){
     driver.findElement(loginIcon).click();
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); //since the element is initially hidden, we need to put a wait 
@@ -48,16 +59,14 @@ public class Homepage {
 	    driver.findElement(By.xpath("//a[@data-testid='signin-link']")).click();
    }
 
-   //Search bar
-   public static By search = By.xpath("//input[@data-testid='search-input']");
-   public void enterInput(String input){
+   /* Go to search bar */
+    public void enterInput(String input){
     driver.findElement(search).sendKeys(input+Keys.ENTER);
    }
 
-   //Men's category 
-   public static By menCat = By.id("men-floor");
+   /* Add a product by 'Men' category */
    public void chooseSubcategory(String cat, String sub, String s){
-        driver.findElement(menCat).click(); //click on 'Men'
+        driver.findElement(menCat).click(); /* click on 'Men'*/
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); 
         WebElement element = wait.until(
         ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-id='87a52035-f6fa-401f-bd58-0d259e403cbb']")));
@@ -70,7 +79,6 @@ public class Homepage {
         List<WebElement> results = driver.findElements(By.xpath("//div[@data-auto-id='productTileDescription']"));
         results.get(1).click();
 
-        
         By size = By.xpath("//select[@id='main-size-select-0']");
         driver.findElement(size).sendKeys(s);
 
@@ -78,11 +86,10 @@ public class Homepage {
         driver.findElement(By.id("product-add-button")).click();
    }
 
-   //Sales ad
-   public static By sales = By.xpath("//a[@href='/men/ctas/generic-promos/promotion-7/cat/?cid=28239&ctaref=hp|mw|promo|banner|1|edit|generic']");
+   /* Add a product by 'Sales' ad */
    public void chooseProductSales(String s) throws InterruptedException{
     Thread.sleep(2000);    
-    driver.findElement(sales).click(); //click on 'Sales Ad'
+    driver.findElement(sales).click(); /* click on 'Sales Ad' */
         
         //choose a product and click
         List<WebElement> results = driver.findElements(By.xpath("//div[@data-auto-id='productTileDescription']"));
@@ -91,7 +98,6 @@ public class Homepage {
         Thread.sleep(2000);
         //Select size - keep in mind that some of the products will not have a size selector we need to check for that
         By size;
-
         try {
             size = By.xpath("//select[@id='main-size-select-0']");
             Select selSize = new Select (driver.findElement(size));
@@ -100,39 +106,35 @@ public class Homepage {
             
         }
 
-        //wait
         Thread.sleep(2000);
         //click on 'Add to cart'
         driver.findElement(By.id("product-add-button")).click();
    }
    
-   //Social media accounts 
-   public static By igIcon = By.xpath("//a[@href='https://www.instagram.com/asos/']");
+   /* Go to social media accounts */
    public void clickOnSocialMedia(){
     driver.findElement(igIcon).click();
    }
 
    
    
-   //Add a product to Saved Items list
+   /* Add a product to Saved Items list */
    public void saved(){
     driver.findElement(menCat).click(); //click on 'Men'
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); 
-        WebElement element = wait.until(
-        ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-id='87a52035-f6fa-401f-bd58-0d259e403cbb']")));
-        driver.findElement(By.xpath("//button[@data-id='c51a4a82-3055-436d-8a41-6621fd7439aa']")).click();
-        WebElement element1 = wait.until(
-        ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='https://www.asos.com/men/sportswear/tops/cat/?cid=27181#nlid=mw|sportswear|shop+by+product|tops']")));
-        driver.findElement(By.xpath("//a[@href='https://www.asos.com/men/sportswear/tops/cat/?cid=27181#nlid=mw|sportswear|shop+by+product|tops']")).click();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); 
+    WebElement element = wait.until(
+    ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-id='87a52035-f6fa-401f-bd58-0d259e403cbb']")));
+    driver.findElement(By.xpath("//button[@data-id='c51a4a82-3055-436d-8a41-6621fd7439aa']")).click();
+    WebElement element1 = wait.until(
+    ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='https://www.asos.com/men/sportswear/tops/cat/?cid=27181#nlid=mw|sportswear|shop+by+product|tops']")));
+    driver.findElement(By.xpath("//a[@href='https://www.asos.com/men/sportswear/tops/cat/?cid=27181#nlid=mw|sportswear|shop+by+product|tops']")).click();
 
-        //get the 'Save' button
-        List<WebElement> saveButtons = driver.findElements(By.className("mm1gcXw"));
-        saveButtons.get(1).click();
-        
+    /* get the 'Save' button */
+    List<WebElement> saveButtons = driver.findElements(By.className("saveForLater_mm1gc"));
+    saveButtons.get(2).click();   
    }
 
-
-   //Filter
+   /* Test the 'Filter' option */
    public void filterResults() throws InterruptedException{   
     driver.findElement(menCat).click();
     Thread.sleep(3000);
@@ -147,11 +149,7 @@ public class Homepage {
     Thread.sleep(3000);
    }
 
-   //Forgot password 
-   public static By forgot = By.id("forgot-password-link");
-   public static By emailForgot = By.id("Email");
-   public static By send = By.id("send");
-   
+   /* Test the 'Forgot password' functionality */
    public void forgotPass(String email){
     clickOnLogin();
     driver.findElement(forgot).click();
@@ -159,9 +157,7 @@ public class Homepage {
     driver.findElement(send).click();
    }
 
-   //Login with invalid data function
-   public static By emailLogin = By.id("EmailAddress");
-   public static By signin = By.id("signin");
+   /* Login with invalid data */ 
    public void invalidLogin(String email){
     clickOnLogin();
     driver.findElement(emailLogin).sendKeys(email);
@@ -169,47 +165,50 @@ public class Homepage {
    }
 
 
-   //Add to cart from saved items
-   public static By savedList = By.xpath("//a[@data-testid='savedItemsIcon']");
+   /* Add to cart from saved items */
    public void addFromSaved() throws InterruptedException{
-    //add an item to Saved list
+    /* Add an item to Saved list */
     saved();
-    //go to Saved list
+    /* Go to Saved list */
     driver.findElement(savedList).click();
 
-    //Select a size and add to the bag
+    /* Select a size and add to the bag */
     Thread.sleep(2000);
     WebElement sizes = driver.findElement(By.cssSelector("[aria-label=Size]"));
     Select selectSize = new Select(sizes);
-    selectSize.selectByIndex(1);
-
+    selectSize.selectByIndex(2);
     Thread.sleep(2000);
 
     driver.findElement(By.className("toBagButton_LHRGf")).click();
    }
 
-   //Remove item from the cart
-   public static By cart = By.xpath("//button[@data-testid='miniBagIcon']");
+   /* Remove item from the cart */
    public void removeFromCart() throws InterruptedException{
-    //firstly add an item to the cart
+    /* firstly add an item to the cart */
     addFromSaved();
     Thread.sleep(3000);
-    //go to the cart
+    /* go to the cart */
     driver.findElement(cart).click();
-    //click on the 'Delete' icon 
+    /* click on the 'Delete' icon */
     By delete = By.xpath("//button[@class='_2y4LZqx']");
     driver.findElement(delete).click();
    }
 
-   //Update size from the cart
+   /*Update size from the cart*/
    public void updateSize() throws InterruptedException{
-    //firstly add an item to the cart
+    /*firstly add an item to the cart*/
     addFromSaved();
     Thread.sleep(3000);
-    //go to the cart
+    /*go to the cart*/
     driver.get("https://www.asos.com/bag?nlid=nav%20header");
     Thread.sleep(3000);
-    driver.findElement(By.id("select2-kb1p-container")).click(); 
+    /*click on size */
+    WebElement s = driver.findElement(By.xpath("//select[contains(@class,'bag-item-size bag-item-selector select2-hidden-accessible')]"));
+    //Select si = new Select(s);
+    //si.selectByValue("202712823");
+    WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(5));
+    wait2.until(ExpectedConditions.elementToBeClickable(s));
+    s.click();
    }
 
    }

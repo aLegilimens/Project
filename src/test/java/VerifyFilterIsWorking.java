@@ -27,10 +27,10 @@ public class VerifyFilterIsWorking {
     @Test
     public void testFilterFunctionality() throws InterruptedException{
         home.filterResults();
-        //check if the resulting products are filtered
+        /* check if the resulting products are filtered */
         Thread.sleep(2000);
         List<WebElement> results = driver.findElements(By.xpath("//div[@data-auto-id='productTileDescription']"));
-        //we loop over the list to verify each result link contains our term
+        /* we loop over the list to verify each result link contains our term */
         for (int i = 0; i < results.size(); i++) {
            Assert.assertTrue((results.get(i).getText().contains("t-shirt") || results.get(i).getText().contains("tee") || results.get(i).getText().contains("T-shirt")), ("Search result validation failed at instance" + i));
        }

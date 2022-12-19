@@ -1,6 +1,5 @@
 package test.java;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -31,8 +30,8 @@ public class AddProductByMenCategoryToCart {
         Thread.sleep(1000);
         String size = "EU 40";
         home.chooseSubcategory(category, subcategory, size);
-        //After putting the product in the bag, check if an error message shows up
-        //If yes, the action did not succeed. 
+        /*After putting the product in the bag, check if an error message shows up
+        If yes, the action did not succeed. */
         Thread.sleep(1000);
         Assert.assertFalse((driver.getPageSource().contains("Sorry")));
         /*

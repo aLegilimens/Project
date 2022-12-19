@@ -30,12 +30,12 @@ public class GoToTheSocialMediaAccounts {
     @Test
     public void goToSocialMedia() throws InterruptedException{
         home.clickOnSocialMedia();
-        //verify that a new tab is opened with the Instagram page loaded. 
-        //get window handlers as list
+        /* verify that a new tab is opened with the Instagram page loaded. */
+        /* get window handlers as list */
 	    List<String> browserTabs = new ArrayList<String> (driver.getWindowHandles());
 	    //switch to new tab
 	    driver.switchTo().window(browserTabs .get(1));
-	    //check is it correct page opened or not (check page's title)
+	    /* check is it correct page opened or not (check page's title) */
         Assert.assertTrue(driver.getCurrentUrl().contentEquals("https://www.instagram.com/asos/"));
     }
     

@@ -8,12 +8,13 @@ import org.openqa.selenium.By;
 public class Registrationpage {
 
     private WebDriver driver;
-   //Constructor
+  
+    /* CONSTRUCTOR */
     public Registrationpage(WebDriver driver){
     this.driver=driver;
     }
 
-   //elements 
+   /* elements */
    public static By emailLogin = By.id("EmailAddress");
    public static By passLogin = By.id("Password");
 
@@ -27,6 +28,7 @@ public class Registrationpage {
    public static By interestedIn = By.id("female");
    public static By registerBtn = By.id("register");
 
+   /* registration information input */
    public void inputRegistrationInfo(String mail, String fName, String lName, String pass, String bDay, String bMonth, String bYear, String interested){
     driver.findElement(email).sendKeys(mail);
     driver.findElement(firstName).sendKeys(fName);
@@ -38,7 +40,7 @@ public class Registrationpage {
     driver.findElement(registerBtn).click();
    }
 
-   
+   /* login information input */
    public void inputLogin(String em, String pas) throws InterruptedException{
     Thread.sleep(2000);
     driver.findElement(emailLogin).sendKeys(em);

@@ -26,12 +26,12 @@ public class AddProductBySalesAdToCart {
     public void testSalesAdCategory() throws InterruptedException{
         String size = "EU 40";
         home.chooseProductSales(size);
-        //After putting the product in the bag, check if an error message shows up
-        //If yes, the action did not succeed. 
+        /*After putting the product in the bag, check if an error message shows up
+        If yes, the action did not succeed. */
         Thread.sleep(1000);
         Assert.assertFalse((driver.getPageSource().contains("Sorry")));
         /*
-         * Since the product will not get added to the cart (driver problem), the test will not pass. 
+         Since the product will not get added to the cart (driver problem), the test will not pass. 
          */
    }  
     

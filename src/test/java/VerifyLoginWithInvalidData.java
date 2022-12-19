@@ -29,7 +29,7 @@ public class VerifyLoginWithInvalidData {
         String email = "doe513960@gmail.com";
         home.invalidLogin(email);
         Thread.sleep(2000);
-        //check if an error message is displayed
+        /* check if an error message is displayed */
         Assert.assertTrue(driver.getPageSource().contains("Hey, we need a password here"));
         /*
          Since we are testing with invalid data, an error message should appear prompting the user to change something. 
