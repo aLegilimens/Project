@@ -32,9 +32,9 @@ public class UpdateSizeFromTheCart {
     public void updateSizeItems() throws InterruptedException{
         home.updateSize();
         Thread.sleep(3000);
-        //check if the item is removed from the bag / if the item is removed, the cart will be empty
-        //driver.findElement(By.xpath("//a[@data-testid='miniBagIcon']")).click();
-        //Assert.assertTrue(driver.getPageSource().contains("Your bag is empty"));
+        /* check if the size is updated from the bag */
+        String size = driver.findElement(By.xpath("//span[contains(@class,'select2 select2-container select2-container--default')]")).getText();
+        Assert.assertTrue(size.equals("S"));
     }
     
     @AfterClass

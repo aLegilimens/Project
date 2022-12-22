@@ -2,6 +2,7 @@ package main.java.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -9,11 +10,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 
 public class Homepage {
 
     private WebDriver driver;
+    Actions actions;
 
     /* Page URL */
     private static String PAGE_URL="https://www.asos.com";
@@ -196,6 +199,7 @@ public class Homepage {
 
    /*Update size from the cart*/
    public void updateSize() throws InterruptedException{
+    driver.manage().window().maximize();
     /*firstly add an item to the cart*/
     addFromSaved();
     Thread.sleep(3000);
@@ -203,12 +207,26 @@ public class Homepage {
     driver.get("https://www.asos.com/bag?nlid=nav%20header");
     Thread.sleep(3000);
     /*click on size */
-    WebElement s = driver.findElement(By.xpath("//select[contains(@class,'bag-item-size bag-item-selector select2-hidden-accessible')]"));
-    //Select si = new Select(s);
-    //si.selectByValue("202712823");
+    WebElement s = driver.findElement(By.xpath("//span[contains(@class,'select2 select2-container select2-container--default')]"));
     WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(5));
     wait2.until(ExpectedConditions.elementToBeClickable(s));
+    Thread.sleep(5000);
     s.click();
+
+    /* click on the first size */ 
+    Thread.sleep(5000);
+    WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(5));
+    Thread.sleep(1000);
+    actions = new Actions(driver);
+    Thread.sleep(5000);
+    actions.moveToElement(s);
+    actions.moveByOffset(0, 20).click().perform();
+
+    /* click on 'UPDATE' button to update the size */
+    WebElement update = driver.findElement(By.xpath("//button[@class='bag-item-edit-update']"));
+    wait3.until(ExpectedConditions.elementToBeClickable(update));
+    update.click();
+    Thread.sleep(5000);
    }
 
    }
