@@ -18,7 +18,6 @@ The workspace contains two folders, where:
 
  - Selenium - web automation
  - Maven - Build and package management
- - 
 
 ## Tools
 
