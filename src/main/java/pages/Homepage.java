@@ -33,7 +33,7 @@ public class Homepage {
    public static By loginIcon = By.xpath("//button[@data-testid='myAccountIcon']");
    public static By search = By.xpath("//input[@data-testid='search-input']");
    public static By menCat = By.id("men-floor");
-   public static By sales = By.xpath("//a[@href='/men/ctas/generic-promos/promotion-7/cat/?cid=28239&ctaref=hp|mw|promo|banner|1|edit|generic']");
+   public static By sales = By.xpath("//a[@href='/men/sale/cat/?cid=8409&ctaref=hp|mw|promo|banner|1|edit|extra20offsaleapponly']");
    public static By igIcon = By.xpath("//a[@href='https://www.instagram.com/asos/']");
    public static By forgot = By.id("forgot-password-link");
    public static By emailForgot = By.id("Email");
@@ -42,6 +42,7 @@ public class Homepage {
    public static By signin = By.id("signin");
    public static By savedList = By.xpath("//a[@data-testid='savedItemsIcon']");
    public static By cart = By.xpath("//button[@data-testid='miniBagIcon']");
+   public static By flag = By.xpath("//button[@data-testid='country-selector-btn']");
 
 
    /* Go to 'Join' page */
@@ -79,7 +80,7 @@ public class Homepage {
         driver.findElement(By.xpath("//a[@href='https://www.asos.com/men/shoes-boots-trainers/sandals/cat/?cid=6593#nlid=mw|shoes|shop+by+product|sandals']")).click();
 
         //choose a product and click
-        List<WebElement> results = driver.findElements(By.xpath("//div[@data-auto-id='productTileDescription']"));
+        List<WebElement> results = driver.findElements(By.xpath("//article[@class='productTile_U0clN']"));
         results.get(1).click();
 
         By size = By.xpath("//select[@id='main-size-select-0']");
@@ -91,11 +92,12 @@ public class Homepage {
 
    /* Add a product by 'Sales' ad */
    public void chooseProductSales(String s) throws InterruptedException{
+    driver.findElement(menCat).click(); /* click on 'Men'*/
     Thread.sleep(2000);    
     driver.findElement(sales).click(); /* click on 'Sales Ad' */
         
         //choose a product and click
-        List<WebElement> results = driver.findElements(By.xpath("//div[@data-auto-id='productTileDescription']"));
+        List<WebElement> results = driver.findElements(By.xpath("//article[@class='productTile_U0clN']"));
         results.get(1).click();
 
         Thread.sleep(2000);
@@ -143,10 +145,10 @@ public class Homepage {
     Thread.sleep(3000);
     driver.findElement(sales).click(); 
 
-    List<WebElement> filters = driver.findElements(By.className("eZ0Gy6f"));
+    List<WebElement> filters = driver.findElements(By.className("button_eZ0Gy"));
     filters.get(4).click();
 
-    List<WebElement> types = driver.findElements(By.className("hLBn89t"));
+    List<WebElement> types = driver.findElements(By.className("li_IVqZE"));
     types.get(0).click();
 
     Thread.sleep(3000);
@@ -229,5 +231,47 @@ public class Homepage {
     Thread.sleep(5000);
    }
 
+   /* Add product without size */
+   public void addWithoutSize(String cat, String sub){
+    driver.findElement(menCat).click(); /* click on 'Men'*/
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); 
+    WebElement element = wait.until(
+    ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-id='87a52035-f6fa-401f-bd58-0d259e403cbb']")));
+    driver.findElement(By.xpath("//button[@data-id='87a52035-f6fa-401f-bd58-0d259e403cbb']")).click();
+    WebElement element1 = wait.until(
+    ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='https://www.asos.com/men/shoes-boots-trainers/sandals/cat/?cid=6593#nlid=mw|shoes|shop+by+product|sandals']")));
+    driver.findElement(By.xpath("//a[@href='https://www.asos.com/men/shoes-boots-trainers/sandals/cat/?cid=6593#nlid=mw|shoes|shop+by+product|sandals']")).click();
+
+    /* choose a product and click */
+    List<WebElement> results = driver.findElements(By.xpath("//article[@class='productTile_U0clN']"));
+    results.get(1).click();
+    /* without choosing size click on 'Add to cart' */
+    driver.findElement(By.id("product-add-button")).click();
+   }
+
+    /* Change currency */
+    public void ChangeCurrency(){
+        driver.manage().window().maximize();
+        /* click on the button with the flag*/
+        driver.findElement(flag).click();
+    
+        /* select currency */
+        Select selCurr = new Select (driver.findElement(By.xpath("//select[@id='currency']")));
+        selCurr.selectByIndex(1);
+    
+        //Click on 'Update preferences'
+        driver.findElement(By.xpath("//button[@data-testid='save-country-button']")).click();
+    }
+    public void goToProductPage(){
+        driver.findElement(menCat).click(); /* click on 'Men'*/
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); 
+        WebElement element = wait.until(
+        ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-id='87a52035-f6fa-401f-bd58-0d259e403cbb']")));
+        driver.findElement(By.xpath("//button[@data-id='87a52035-f6fa-401f-bd58-0d259e403cbb']")).click();
+        WebElement element1 = wait.until(
+        ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='https://www.asos.com/men/shoes-boots-trainers/sandals/cat/?cid=6593#nlid=mw|shoes|shop+by+product|sandals']")));
+        driver.findElement(By.xpath("//a[@href='https://www.asos.com/men/shoes-boots-trainers/sandals/cat/?cid=6593#nlid=mw|shoes|shop+by+product|sandals']")).click();
+    }
+    
    }
    
