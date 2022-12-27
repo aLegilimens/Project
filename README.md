@@ -25,7 +25,16 @@ The workspace contains two folders, where:
  
 ## Programming language
 
- - We used Java programming language to code, because it is easy to use and aldo it's possible to automate testing for iOS, Android and Web platforms.
+ - We used Java programming language to code, because it is easy to use and although it's possible to automate testing for iOS, Android and Web platforms.
+ 
+## How to run the tests
+ - Install VS Code
+ - Download the latest stable Selenium Web Driver for Java
+ - Download ChromeDriver
+ - Install Java Extension Pack for Visual Studio Code
+ - Clone this project from GitHub
+ - Run the tests 
+
 
 ## Dependency Management
 
